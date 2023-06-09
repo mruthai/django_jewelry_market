@@ -2,7 +2,7 @@ from django import forms
 
 from .models import ConversationMessage
 
-
+""" Object representing a conversation """
 class ConversationMessageForm(forms.ModelForm):
     class Meta:
         model = ConversationMessage

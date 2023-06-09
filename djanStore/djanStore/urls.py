@@ -13,6 +13,7 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),
     path('items/', include('item.urls')),
     path('inbox/', include('conversation.urls')),
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
 ]    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # This line of code points to the media folder & only used in development
   

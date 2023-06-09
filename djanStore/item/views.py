@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import NewItemForm, EditItemForm
 from .models import Item, Category
 
+""" Function query items available within our database for user to search"""
 def items(request):
     query = request.GET.get('query', '')
     category_id = request.GET.get('category', 0)
@@ -24,6 +25,8 @@ def items(request):
         'category_id': int(category_id)
     })
 
+
+""" Function to add details to each item that is created by the userID """
 def detail(request, pk):  #pk is primary key
     item = get_object_or_404(Item, pk=pk) 
     related_items = Item.objects.filter(category=item.category, is_sold=False).exclude(pk=pk)[0:3] #slice only show up to related items
@@ -32,7 +35,7 @@ def detail(request, pk):  #pk is primary key
         'item': item,
         'related_items': related_items
     })  
-
+""" Fuction for user to user to create a new item in a higher level category """
 @login_required
 def new_user_item(request):
     if request.method == 'POST':
@@ -52,6 +55,8 @@ def new_user_item(request):
         'title': 'New Item',
     })
 
+""" Function to allow the user to edit an item that already exists in their inventory"""
+
 @login_required
 def edit(request,pk):
     item = get_object_or_404(Item, pk=pk, created_by=request.user)
@@ -70,7 +75,7 @@ def edit(request,pk):
         'form': form,
         'title': 'Edit Item',
     })
-
+""" Function to allow the user to delete an item they can't sell in from inventory"""
 @login_required
 def delete(request, pk):
     item = get_object_or_404(Item, pk=pk, created_by=request.user)

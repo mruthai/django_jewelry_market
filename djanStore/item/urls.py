@@ -3,6 +3,7 @@ from . import views
 
 app_name = 'item'
 
+""" How urls are are captured by the user and their primary key and the item they are selling """
 urlpatterns = [
     path('', views.items, name='items'), 
     path('new/', views.new_user_item, name='new_user_item'),

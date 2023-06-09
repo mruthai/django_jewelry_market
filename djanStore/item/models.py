@@ -1,5 +1,8 @@
+""" Model of Items and Cateogires """
 from django.contrib.auth.models import User
 from django.db import models
+
+""" Cateogry class is the blueprint for identifying items that need to be specified in a specific caterory"""
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -10,7 +13,8 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+""" class Item fields that need to be specified for an individual item"""
 class Item(models.Model):
     category = models.ForeignKey(Category, related_name='items', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)

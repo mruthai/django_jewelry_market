@@ -4,12 +4,12 @@ from .models import Item
 
 INPUT_CLASSES = 'w-full py-4 px-6 rounded-xl border'
 
+""" Object function class that takens the user input to create a new item to display on the dashboard """
 class NewItemForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = ('category', 'name', 'description', 'price', 'image',)
 
-    
         widgets = {
             'category': forms.Select(attrs={
                 'class': INPUT_CLASSES
@@ -28,6 +28,8 @@ class NewItemForm(forms.ModelForm):
             }),
 
         }
+
+""" Object function class that takens the user input to edit an existing item to display on the dashboard """
 
 class EditItemForm(forms.ModelForm):
     class Meta:
